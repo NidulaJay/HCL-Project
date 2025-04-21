@@ -1,0 +1,33 @@
+#renderingSpace {
+    width: 100%;
+    height: calc(100vh - 100px);
+}
+  
+body{
+    text-align: center;
+}
+  
+.title {
+    font-family: "Zen Dots", sans-serif;
+    position: absolute;
+    top: 15vh;
+    width: 100%;
+    font-size: 150px;
+    font-weight: 600;
+    color: white;
+    opacity: 100%;
+    text-align: center;
+    z-index: 100;
+    display:block;
+}
+  
+.img {
+    position: absolute;
+    top: 34%; 
+    left: 20%;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+    display: block;
+    transform: translate(50%);
+}
+  
