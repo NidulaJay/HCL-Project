@@ -44,7 +44,8 @@ export class HomeComponent {
     this.renderer.setSize(width, height);
     container?.appendChild(this.renderer.domElement);
 
-    const dirLight = new THREE.DirectionalLight(0xffffff, 1);
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+    const dirLight = new THREE.DirectionalLight(0xffffff, 5);
     dirLight.position.set(5, 10, 7.5);
     dirLight.castShadow = true;
 
@@ -55,16 +56,16 @@ export class HomeComponent {
     const floorMat = new THREE.MeshStandardMaterial({ color: 0x000000, side: THREE.DoubleSide });
     const floor = new THREE.Mesh(floorGeo, floorMat);
     floor.rotation.x = -Math.PI / 2;
-    floor.position.y = -10.5;
+    floor.position.y = -12.5;
     floor.position.z = -1
     this.scene.add(floor);
 
-    this.scene.add(dirLight);
+    this.scene.add(ambientLight, dirLight);
 
-    this.loader.load('assets/models/table.glb', (gltf) => {
+    this.loader.load('assets/models/tree.glb', (gltf) => {
       this.tableModel = gltf.scene;
-      this.tableModel.scale.set(0.17, 0.17, 0.17);
-      this.tableModel.position.set(0, -10, 0);
+      this.tableModel.scale.set(0.2, 0.2, 0.2);
+      this.tableModel.position.set(0, -12, 0);
       this.tableModel.rotation.set(0.1, 0, 0)
       this.scene.add(this.tableModel)
 

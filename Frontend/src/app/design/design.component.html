@@ -1,1 +1,45 @@
-<p>design works!</p>
+<div class="container">
+    <div class="topSection">
+        <div id="renderingSpace"></div>
+        <div class="topRightSection">
+            <p class="title01">
+               Wall Color
+            </p>
+            <div class="colorSection">
+                <a (click)="changeColor('#FDE47D')" class="color" style="background-color: #FDE47D; margin-left: 0;"></a>
+                <a (click)="changeColor('#2D373F')" class="color" style="background-color: #2D373F;"></a>
+                <a (click)="changeColor('#804250')" class="color" style="background-color: #804250;"></a>
+                <a (click)="changeColor('#B95F62')" class="color" style="background-color: #B95F62;"></a>
+                <a (click)="changeColor('#2A564A')" class="color" style="background-color: #2A564A;"></a>
+            </div>
+            <br>
+            <p class="title01">
+                Furniture Size
+            </p>
+            <div class="counter">
+                <button (click)="decreaseSize()">-</button>
+                <input [value]="this.preset.size" readonly>
+                <button (click)="increaseSize()">+</button>
+            </div>
+            <br>
+            <p class="title01">
+                Furniture Model
+            </p>
+            <div class="furnitureContainer">
+                <app-furniture-button [model]="'chair'" (modelSelected)="changeModel($event)"></app-furniture-button>
+                <app-furniture-button [model]="'chair1'" (modelSelected)="changeModel($event)"></app-furniture-button>
+                <app-furniture-button [model]="'chair2'" (modelSelected)="changeModel($event)"></app-furniture-button>
+            </div>
+            <div class="furnitureContainer">
+                <app-furniture-button [model]="'table'" (modelSelected)="changeModel($event)"></app-furniture-button>
+                <app-furniture-button [model]="'table1'" (modelSelected)="changeModel($event)"></app-furniture-button>
+                <app-furniture-button [model]="'table2'" (modelSelected)="changeModel($event)"></app-furniture-button>
+            </div>
+            <br>
+            <div class="buttonSection">
+                <button (click)="reset()" class="button1" style="background-color: #d9d9d9;color: #262626;">Reset</button>
+                <button (click)="changeModel('chair2')" class="button1">Save</button>
+            </div>
+        </div>
+    </div>
+</div>

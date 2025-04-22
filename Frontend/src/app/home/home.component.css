@@ -23,8 +23,9 @@ body{
   
 .img {
     position: absolute;
-    top: 34%; 
-    left: 20%;
+    top: 30%; 
+    left: 10%;
+    opacity: 85%;
     transform: translate(-50%, -50%);
     z-index: 100;
     display: block;
