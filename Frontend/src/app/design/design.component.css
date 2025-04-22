@@ -1,0 +1,96 @@
+#renderingSpace{
+    width: 70%;
+    height: 75vh;
+    border: 2px solid #EA6338;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.container{
+    padding: 40px;
+}
+
+.topSection{
+    display: flex;
+}
+
+.topRightSection{
+    padding: 0 20px 0 40px;
+    margin-top: -20px;
+    margin: 0;
+}
+
+.title01{
+    font-size: 23px;
+    color: #EA6338;
+    font-weight: 500;
+    margin: 0;
+    margin-bottom: 20px;
+    padding: 0;
+}
+
+.colorSection{
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.color{
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    border: 1px solid black;
+}
+
+.counter {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.counter button{
+    background-color: #525252;
+    color: white;
+    outline: none;
+    border: none;
+    font-size: 18px;
+    height: 30px;
+    width: 30px;
+    border-radius: 4px;
+    font-weight: 600;
+}
+  
+.counter input {
+    width: 50px;
+    height: 30px;
+    text-align: center;
+    font-size: 15px;
+    font-weight: 500;
+    color: white;
+    background-color: #525252;
+    border-radius: 4px;
+    border: none;
+    outline: none;
+}
+
+.furnitureContainer{
+    margin-bottom: 10px;
+}
+
+.buttonSection{
+    margin-top: 10px;
+    text-align: right;
+}
+
+.button1{
+    padding: 7px 17px;
+    margin-left: 15px;
+    background-color: #EA6338;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 500;
+    border: none;
+    color: white;
+}
