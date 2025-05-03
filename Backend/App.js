@@ -20,7 +20,7 @@ const PORT = process.env.PORT || 3001;
 
 const server = app.listen(PORT, () => {
     const host = 'localhost'; 
-    const port = server.address().port;
+    const port = 3001;
     console.log(`Server running at: http://${host}:${port}`);
   });
 
