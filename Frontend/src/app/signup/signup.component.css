@@ -1,95 +1,107 @@
-.mainContainer{
-    height: calc(80vh);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+.mainContainer {
+  height: calc(80vh);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
-.container{
-    width: 50%;
-    margin: auto;
-    justify-content: center;
-    align-items: center;
-}
-
-.timeSection{
-    text-align: center;
-    margin-bottom: 6rem;
-}
-#time{
-    color: #CBCBCB;
-    font-weight: 500;
-    font-size: 40px;
-    margin: 0;
-    padding: 0;
-}
-#date{
-    color: #CBCBCB;
-    font-size: 15px;
-    margin: 0;
-    padding: 0;
+.container {
+  width: 50%;
+  margin: auto;
+  justify-content: center;
+  align-items: center;
 }
 
-.midSection{
-    text-align: center;
+.timeSection {
+  text-align: center;
+  margin-bottom: 6rem;
+}
+#time {
+  color: #cbcbcb;
+  font-weight: 500;
+  font-size: 40px;
+  margin: 0;
+  padding: 0;
+}
+#date {
+  color: #cbcbcb;
+  font-size: 15px;
+  margin: 0;
+  padding: 0;
 }
 
-.title{
-    letter-spacing: 5px;
-    font-size: 50px;
-    font-weight: 600;
-    color: #EA6338;
-    margin-bottom: 30px;
-    padding-bottom: 0;
+.midSection {
+  text-align: center;
+}
+
+.title {
+  letter-spacing: 5px;
+  font-size: 50px;
+  font-weight: 600;
+  color: #ea6338;
+  margin-bottom: 30px;
+  padding-bottom: 0;
 }
 
 .inputHolder {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    margin: auto;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    width: 300px;
-    height: 40px;
-    padding-left: 10px;
-    background-color: white;
-    border: None;
-    border-radius: 4px;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 300px;
+  height: 40px;
+  padding-left: 10px;
+  background-color: white;
+  border: None;
+  border-radius: 4px;
 }
 
-.inputHolder img{
-    margin-right: 14px;
-    align-items: center;
+.inputHolder img {
+  margin-right: 14px;
+  align-items: center;
 }
 
-input{
-    color: black;
-    font-weight: bold;
-    border: none;
-    background-color: transparent;
-    padding: 0;
-    margin: 0;
-    height: 40px;
+input {
+  color: black;
+  font-weight: bold;
+  border: none;
+  background-color: transparent;
+  padding: 0;
+  margin: 0;
+  height: 40px;
 }
 
-input::placeholder{
-    color: black;
-    font-size: 13px;
+input::placeholder {
+  color: black;
+  font-size: 13px;
 }
-input:focus{
-    outline: none;
+input:focus {
+  outline: none;
 }
 input:-webkit-autofill {
-    background-color: white !important;
+  background-color: white !important;
 }
 
-.link{
-    display: block;
-    font-size: 13px;
-    color: #EA6338;
-    font-weight: bold;
-    text-align: center;
-    padding-left: 20px;
-    padding-top: 10px;
-    text-decoration: none;
+.link {
+  display: block;
+  font-size: 13px;
+  color: #ea6338;
+  font-weight: bold;
+  text-align: center;
+  padding-left: 20px;
+  padding-top: 10px;
+  text-decoration: none;
+}
+
+.error-message {
+  color: #f44336;
+  margin-top: 10px;
+  font-size: 14px;
+  text-align: center;
+}
+
+.primaryButton:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
 }

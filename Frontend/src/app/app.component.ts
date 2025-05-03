@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { NavigationEnd, Router, RouterLink, RouterOutlet } from '@angular/router';
+import {
+  NavigationEnd,
+  Router,
+  RouterLink,
+  RouterOutlet,
+} from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { filter } from 'rxjs';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
@@ -10,30 +15,29 @@ import { SessionService } from '../services/sessionService';
   selector: 'app-root',
   imports: [RouterOutlet, CommonModule, MatSnackBarModule],
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
-
   constructor(private router: Router, private session: SessionService) {}
   showNavbar = true;
 
   ngOnInit(): void {
-    this.router.events.pipe(
-      filter(event => event instanceof NavigationEnd)
-    ).subscribe(() => {
-      this.checkRoute(this.router.url);
-      this.checkLoggedIn(this.router.url);
-    });
+    this.router.events
+      .pipe(filter((event) => event instanceof NavigationEnd))
+      .subscribe(() => {
+        this.checkRoute(this.router.url);
+        this.checkLoggedIn(this.router.url);
+      });
   }
 
   checkLoggedIn(url: string): void {
-    if (!(url.endsWith('/login') || url.endsWith('/signup'))){
-      if (!this.session.getCurrentUser()){
-        this.router.navigate(['/login'])
+    if (!(url.endsWith('/login') || url.endsWith('/signup'))) {
+      if (!this.session.getCurrentUser()) {
+        this.router.navigate(['/login']);
       }
-    } else{
-      if(this.session.getCurrentUser()){
-        this.router.navigate(['/'])
+    } else {
+      if (this.session.getCurrentUser()) {
+        this.router.navigate(['/']);
       }
     }
   }

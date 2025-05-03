@@ -4,17 +4,16 @@ import { map, Observable } from 'rxjs';
 import { User } from '../models/user.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UserService {
+  private apiUrl = 'http://localhost:3001/api/user';
 
-  private apiUrl = 'http://localhost:3001/api/user'; 
-
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   login(username: string, password: string): Observable<User> {
     const body = { username, password };
-  
+
     return this.http.post<{ user: any }>(`${this.apiUrl}/login`, body).pipe(
       map((response) => {
         if (response && response.user) {
@@ -26,14 +25,16 @@ export class UserService {
     );
   }
 
-  mapToModel(data: any): User{
+  register(name: string, username: string, password: string): Observable<any> {
+    const body = { name, username, password };
+    return this.http.post(`${this.apiUrl}/create`, body);
+  }
+
+  mapToModel(data: any): User {
     return {
       _id: data.id,
       name: data.name,
-      username: data.username
-    }
+      username: data.username,
+    };
   }
-
-  
-
 }
