@@ -1,0 +1,30 @@
+<div class="mainContainer">
+    <div class="container">
+        <div class="timeSection">
+            <p id="time">
+                {{this.time}}
+            </p>
+            <p id="date">
+                {{this.date}}
+            </p>
+        </div>
+        <div class="midSection">
+            <p class="title">Login</p>
+            <p *ngIf="this.errorMsg" class="error">- {{this.errorMsg}} -</p>
+            <form [formGroup]="loginForm">
+            <div class="inputHolder">
+                <img src="assets/images/username.png" alt="" height="25">
+                <input #usernameInput type="text" placeholder="Username" name="uname" autocomplete="off" required formControlName="Username">
+            </div>
+            <div class="inputHolder">
+                <img src="assets/images/password.png" alt="" height="25">
+                <input type="password" placeholder="Password" name="pass" autocomplete="new-password" required formControlName="Password">
+            </div>
+            <br>
+            <button (click)="onSubmit()" class="primaryButton" style="padding: 10px 40px;font-size: 13px;margin-top: 10px;">Login</button>
+            <a class="link" href="/signup">New Here ?</a>
+            </form>
+        </div>
+    </div>
+</div>
+

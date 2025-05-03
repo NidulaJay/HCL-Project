@@ -1,0 +1,59 @@
+<div class="mainContainer">
+  <div class="container">
+    <div class="timeSection">
+      <p id="time">
+        {{ this.time }}
+      </p>
+      <p id="date">
+        {{ this.date }}
+      </p>
+    </div>
+    <div class="midSection">
+      <p class="title">Register</p>
+      <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+        <div class="inputHolder">
+          <img src="assets/images/name.png" alt="" height="25" />
+          <input
+            type="text"
+            placeholder="Name"
+            formControlName="name"
+            autocomplete="off"
+          />
+        </div>
+        <div class="inputHolder">
+          <img src="assets/images/username.png" alt="" height="25" />
+          <input
+            type="text"
+            placeholder="Username"
+            formControlName="username"
+            autocomplete="off"
+          />
+        </div>
+        <div class="inputHolder">
+          <img src="assets/images/password.png" alt="" height="25" />
+          <input
+            type="password"
+            placeholder="Password"
+            formControlName="password"
+            autocomplete="new-password"
+          />
+        </div>
+
+        <div *ngIf="errorMessage" class="error-message">
+          {{ errorMessage }}
+        </div>
+
+        <br />
+        <button
+          type="submit"
+          class="primaryButton"
+          style="padding: 10px 40px; font-size: 13px; margin-top: 10px"
+          [disabled]="isLoading"
+        >
+          {{ isLoading ? "Registering..." : "Register" }}
+        </button>
+      </form>
+      <a class="link" href="/login">Already Have an Account ?</a>
+    </div>
+  </div>
+</div>
