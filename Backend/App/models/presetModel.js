@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 
 const presetSchema = new mongoose.Schema(
   {
+    name: {type: String, required: false, default: 'Sample Design'},
     color: {
       type: String,
       required: [true, "Color is required"],
@@ -31,4 +32,4 @@ const presetSchema = new mongoose.Schema(
 
 const Preset = mongoose.model("Preset", presetSchema);
 
-module.exports = Preset;
+module.exports = Preset;

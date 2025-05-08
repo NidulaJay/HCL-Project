@@ -33,7 +33,7 @@ router.post("/create", async (req, res) => {
 
 router.post("/login", async (req, res) => {
   try {
-    const existingUser = await User.findOne({ username: req.body.username });
+    const existingUser = await User.findOne({ username: req.body.username }).select("-role");;
     if (!existingUser) {
       return res.status(401).json({ error: "User not found" });
     }
@@ -48,6 +48,7 @@ router.post("/login", async (req, res) => {
     }
 
     const payload = {
+      id: existingUser._id,
       name: existingUser.name,
       username: existingUser.username,
     };
@@ -62,12 +63,26 @@ router.post("/login", async (req, res) => {
 // Get all users
 router.get("/all", async (req, res) => {
   try {
-    const users = await User.find().select("-password");
+    const users = await User.find().select("-password -role");
     res.status(200).json({
       success: true,
       count: users.length,
       data: users,
     });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({
+      success: false,
+      error: "Server error",
+    });
+  }
+});
+
+router.post("/getRole", async (req, res) => {
+  try {
+    const user = await User.findOne({ username: req.body.username }).select('role');
+    console.log(user)
+    res.status(200).json({data: user});
   } catch (err) {
     console.error(err);
     res.status(500).json({

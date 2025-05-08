@@ -10,6 +10,7 @@ import { filter } from 'rxjs';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { StringKeyframeTrack } from 'three';
 import { SessionService } from '../services/sessionService';
+import { User } from '../models/user.model';
 
 @Component({
   selector: 'app-root',
@@ -20,6 +21,7 @@ import { SessionService } from '../services/sessionService';
 export class AppComponent implements OnInit {
   constructor(private router: Router, private session: SessionService) {}
   showNavbar = true;
+  user: User | undefined = undefined;  
 
   ngOnInit(): void {
     this.router.events
@@ -31,6 +33,11 @@ export class AppComponent implements OnInit {
   }
 
   checkLoggedIn(url: string): void {
+    if(this.session.getCurrentUser()){
+      this.user = this.session.getCurrentUser();
+    }else{
+      this.user = undefined
+    }
     if (!(url.endsWith('/login') || url.endsWith('/signup'))) {
       if (!this.session.getCurrentUser()) {
         this.router.navigate(['/login']);
@@ -47,6 +54,14 @@ export class AppComponent implements OnInit {
       this.showNavbar = false;
     } else {
       this.showNavbar = true;
+    }
+  }
+
+  logout(): void{
+    let confirmation = confirm('Are you sure you want to logout?')
+    if (confirmation){
+      this.session.removeCurrentUser();
+      this.router.navigate(['/login']);
     }
   }
 }

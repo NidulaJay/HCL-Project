@@ -73,10 +73,13 @@ export class LoginComponent implements OnInit {
       const usernameControl = this.loginForm.get('Username');
       const passwordControl = this.loginForm.get('Password');
 
-      if (usernameControl?.hasError('required') || passwordControl?.hasError('required')) {
-        this.errorMsg = 'Some fields are empty';
-      } else {
-        this.errorMsg = 'Invalid form'; 
+      if (usernameControl?.hasError('required')) {
+        this.errorMsg = 'Username is required';
+      }else if(passwordControl?.hasError('required')){
+        this.errorMsg = 'Password is required';
+      } 
+      else {
+        this.errorMsg = 'Invalid Inputs'; 
       }
     }
   }

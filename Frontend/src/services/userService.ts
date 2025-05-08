@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { map, Observable } from 'rxjs';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { catchError, map, Observable, throwError } from 'rxjs';
 import { User } from '../models/user.model';
 
 @Injectable({
@@ -32,9 +32,30 @@ export class UserService {
 
   mapToModel(data: any): User {
     return {
-      _id: data.id,
+      id: data.id,
       name: data.name,
       username: data.username,
     };
   }
+
+  createContact(Data: any): Observable<any>{
+    const headers =  new HttpHeaders();
+    return this.http.post("http://localhost:3001/api/Contact/create" ,Data, {headers}).pipe(catchError((error: HttpErrorResponse) =>{
+      return throwError(error);
+    }));
+  }
+
+  getrole(Data: any): Observable<any>{
+    const headers =  new HttpHeaders();
+    return this.http.post("http://localhost:3001/api/user/getRole" ,Data, {headers}).pipe(catchError((error: HttpErrorResponse) =>{
+      return throwError(error);
+    }));
+  }
+
+  getContact(): Observable<any>{
+    return this.http.get<any[]>("http://localhost:3001/api/Contact/all").pipe(catchError((error: HttpErrorResponse) =>{
+      return throwError(error);
+    }));
+  }
+
 }

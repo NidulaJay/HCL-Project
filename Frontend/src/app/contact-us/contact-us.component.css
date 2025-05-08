@@ -17,3 +17,32 @@ textarea {
     text-transform: uppercase;
     padding-top: 10px;
 }
+
+.alert {
+    padding: 20px;
+    margin: 10px 0;
+    border-radius: 5px;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .success {
+    background-color: #4CAF50; 
+    color: white; 
+    border: 1px solid #4CAF50;
+  }
+  
+  .success strong {
+    margin-right: 10px;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  .alert {
+    animation: fadeIn 0.5s ease-in-out;
+  }
+  

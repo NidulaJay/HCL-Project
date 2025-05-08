@@ -10,6 +10,9 @@
     </div>
     <div class="midSection">
       <p class="title">Register</p>
+      <p *ngIf="errorMessage" class="error">
+        - {{ errorMessage }} -
+      </p>
       <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
         <div class="inputHolder">
           <img src="assets/images/name.png" alt="" height="25" />
@@ -37,10 +40,6 @@
             formControlName="password"
             autocomplete="new-password"
           />
-        </div>
-
-        <div *ngIf="errorMessage" class="error-message">
-          {{ errorMessage }}
         </div>
 
         <br />

@@ -15,15 +15,8 @@ export class HomeComponent {
   private renderer!: THREE.WebGLRenderer;
 
   private tableModel: THREE.Group | undefined;
-  private character: THREE.Group | undefined;
   private loader: GLTFLoader = new GLTFLoader();
-  private loader2: FBXLoader = new FBXLoader();
-  private rotationDirection: number = 1;
 
-  private mouse = new THREE.Vector2();
-  private raycaster = new THREE.Raycaster();
-  private groundPlane = new THREE.Plane(new THREE.Vector3(0, 1, 0), 0); // horizontal plane
-  private targetPoint = new THREE.Vector3();
   private mouseOffsetX = 0;
 
   ngOnInit() {
@@ -74,22 +67,6 @@ export class HomeComponent {
       console.error(error);
     });
 
-    this.loader2.load('assets/models/character.fbx', (fbx) => {
-      this.character = fbx
-      this.character.scale.set(1, 1, 1);
-      this.character.position.set(0, -6, 0);
-      this.character.traverse((child) => {
-        if ((child as THREE.Mesh).isMesh) {
-          const mesh = child as THREE.Mesh;
-          mesh.material = new THREE.MeshStandardMaterial({ color: 0xf0f0f0 });
-        }
-      });
-
-      // this.scene.add(this.character)
-    }, undefined, (error) => {
-      console.error('Error loading FBX:', error);
-    });
-
     this.camera.position.z = 20;
     this.camera.position.y = -2
 
@@ -108,13 +85,10 @@ export class HomeComponent {
     requestAnimationFrame(() => this.animate());
   
     if (this.tableModel) {
-      // Max angle (in radians) the table can rotate to the left or right
-      const maxRotation = 0.3; // around ±17 degrees
+      const maxRotation = 0.3;
   
-      // Target Y rotation based on mouse horizontal offset
       const targetY = this.mouseOffsetX * maxRotation;
   
-      // Smoothly interpolate rotation
       this.tableModel.rotation.y = THREE.MathUtils.lerp(
         this.tableModel.rotation.y,
         targetY,
@@ -129,7 +103,6 @@ export class HomeComponent {
     const rect = this.renderer.domElement.getBoundingClientRect();
     const centerX = rect.left + rect.width / 2;
   
-    // Offset from center (range: -1 to 1)
     this.mouseOffsetX = ((event.clientX - centerX) / rect.width) * 2;
   }
 
