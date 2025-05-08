@@ -1,9 +1,11 @@
-import { Component, AfterViewInit } from '@angular/core';
+import { Component, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { Preset } from '../../models/preset.model';
 import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader';
 import { FurnitureButtonComponent } from '../components/furniture-button/furniture-button.component';
+import { ActivatedRoute, Router } from '@angular/router';
+import { PresetService } from '../../services/presetService';
 
 @Component({
   selector: 'app-design',
@@ -12,6 +14,9 @@ import { FurnitureButtonComponent } from '../components/furniture-button/furnitu
   styleUrls: ['./design.component.css']
 })
 export class DesignComponent implements AfterViewInit {
+
+  @ViewChild('nameInput') nameInputRef!: ElementRef;
+
   private scene!: THREE.Scene;
   private camera!: THREE.PerspectiveCamera;
   private renderer!: THREE.WebGLRenderer;
@@ -28,14 +33,39 @@ export class DesignComponent implements AfterViewInit {
   private previousMouseX = 5;
   private horizontalAngle = 5;
 
+  private id: string | null = '';
+
   preset: Preset = {
+    id: 'aaa',
+    name: 'Sample',
     model: 'chair',
     size: 7,
     color: '#FDE47D'
   }
 
+  constructor(
+    private route: ActivatedRoute,
+    private presetService: PresetService,
+    private router: Router
+  ){}
+
   ngAfterViewInit(): void {
-    this.init3D();
+    this.id = this.route.snapshot.paramMap.get('id');
+    if(this.id != null){
+      this.presetService.getDesign(this.id).subscribe({
+        next: (response) => {
+          console.log('Preset Loaded', response);
+          this.preset = response
+          this.init3D();
+        },
+        error: (err) => {
+            this.router.navigate(['/'])
+      }})
+    }else{
+      this.init3D();
+    }
+    
+    
   }
 
   private init3D() {
@@ -104,20 +134,44 @@ export class DesignComponent implements AfterViewInit {
     floor.receiveShadow = true;
     this.scene.add(floor);
 
-    const roofTexture = this.textureLoader.load('assets/textures/roof.jpg');
+    const roofTexture = this.textureLoader.load('assets/textures/roof.png');
     roofTexture.wrapS = THREE.RepeatWrapping;
     roofTexture.wrapT = THREE.RepeatWrapping;
-    roofTexture.repeat.set(20, 20);
+    roofTexture.repeat.set(5, 5);
+
+    const roofNormalTexture = this.textureLoader.load('assets/textures/roofNormal.png');
+    roofNormalTexture.wrapS = THREE.RepeatWrapping;
+    roofNormalTexture.wrapT = THREE.RepeatWrapping;
+    roofNormalTexture.repeat.set(3, 3);
+
+    const roofMetallicTexture = this.textureLoader.load('assets/textures/roofMetallic.jpg');
+    roofMetallicTexture.wrapS = THREE.RepeatWrapping;
+    roofMetallicTexture.wrapT = THREE.RepeatWrapping;
+    roofMetallicTexture.repeat.set(3, 3);
+
+    const roofRoughnessTexture = this.textureLoader.load('assets/textures/roofRoughness.jpg');
+    roofRoughnessTexture.wrapS = THREE.RepeatWrapping;
+    roofRoughnessTexture.wrapT = THREE.RepeatWrapping;
+    roofRoughnessTexture.repeat.set(3, 3);
+
+    const roofDisplacementTexture = this.textureLoader.load('assets/textures/roofDisplacement.tiff');
+    roofDisplacementTexture.wrapS = THREE.RepeatWrapping;
+    roofDisplacementTexture.wrapT = THREE.RepeatWrapping;
+    roofDisplacementTexture.repeat.set(3, 3);
 
     const roofMaterial = new THREE.MeshStandardMaterial({
       map: roofTexture,
+      normalMap: roofNormalTexture,
+      metalnessMap: roofMetallicTexture,
+      roughnessMap: roofRoughnessTexture,
+      displacementMap: roofDisplacementTexture,
       side: THREE.DoubleSide
     });
 
 
     const roof = new THREE.Mesh(
       new THREE.PlaneGeometry(40, 40),
-      new THREE.MeshStandardMaterial({ color: 0x6A5242, side: THREE.DoubleSide })
+      roofMaterial
     );
     roof.rotation.x = Math.PI / 2;
     roof.position.y = 10;
@@ -257,12 +311,66 @@ export class DesignComponent implements AfterViewInit {
 
   reset(): void{
     this.preset = {
+      id: '',
+      name: 'Sample',
       model: 'chair',
       color: '#FDE47D',
       size: 7
     }
     this.changeModel(this.preset.model)
     this.updateModel();
+  }
+
+  delete(): void{
+    let confirmation = confirm('Do you want to delete this design?')
+    if(!confirmation){
+      return
+    }
+    
+    if(this.id == null){
+      return
+    }
+    this.presetService.deleteDesign(this.id).subscribe({
+      next: (response) => {
+        if(response == true){
+          this.router.navigate(['/designs']);
+          return
+        }
+        alert('Deletion Unsuccessful')
+      },
+      error: (err) => {
+          alert('Deletion Unsuccessful')
+    }})
+  }
+
+  update(): void{
+    if(this.id == null){
+      return
+    }
+
+    let name = this.nameInputRef.nativeElement.value;
+    let size = this.preset.size
+    let color = this.preset.color
+    let model = this.preset.model
+
+    let data = {
+      name: name, 
+      color: color,
+      model: model,
+      size: size
+    }
+    this.presetService.updateDesign(this.id, data).subscribe({
+      next: (response) => {
+        if(response){
+          this.router.navigate(['/designs']);
+          return
+        }
+        alert('Update Unsuccessful')
+      },
+      error: (err) => {
+          alert('Update Unsuccessful')
+    }})
+    
   }
 
 }

@@ -52,3 +52,19 @@ body {
 .nav-links li a:hover {
   color: #ffffff;
 }
+
+
+#name{
+  color: #ECD8C4;
+  font-weight: normal;
+  font-size: 18px;
+}
+
+#logout{
+  margin-left: 10px; 
+  margin-top: 5px;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}

@@ -2,6 +2,12 @@
     <div class="topSection">
         <div id="renderingSpace"></div>
         <div class="topRightSection">
+            <div style="display: flex;">
+                <p class="title01" style="margin-top: 5px;">
+                    Name 
+                </p>
+                <input #nameInput type="text" style="margin-left: 10px;" [value]="this.preset.name">
+            </div>
             <p class="title01">
                Wall Color
             </p>
@@ -37,8 +43,9 @@
             </div>
             <br>
             <div class="buttonSection">
-                <button (click)="reset()" class="primaryButton">Reset</button>
-                <button (click)="changeModel('chair2')" class="secondaryButton">Save</button>
+                <button (click)="delete()" class="criticalButton">Delete</button>
+                <button (click)="reset()" class="secondaryButton">Reset</button>
+                <button (click)="update()" class="primaryButton">Save</button>
             </div>
         </div>
     </div>
