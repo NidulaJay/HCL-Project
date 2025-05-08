@@ -13,7 +13,7 @@ import { SessionService } from '../services/sessionService';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, CommonModule, MatSnackBarModule],
+  imports: [RouterOutlet, CommonModule, MatSnackBarModule, RouterLink],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
