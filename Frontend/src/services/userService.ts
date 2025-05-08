@@ -32,7 +32,7 @@ export class UserService {
 
   mapToModel(data: any): User {
     return {
-      _id: data.id,
+      id: data.id,
       name: data.name,
       username: data.username,
     };

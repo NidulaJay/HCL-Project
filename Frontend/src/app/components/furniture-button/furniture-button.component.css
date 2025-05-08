@@ -1,13 +1,42 @@
-button{
+.main{
     width: 100px;
     height: 100px;
-    border-radius: 5px;
     background-color: #898989;
-    border: 2px solid black;
-    margin-right: 20px;
+    border: none;
+    margin: auto;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 .model-area{
     width: 100%;
     height: 100%;
 }
+
+.container{
+    width: 100px;
+    height: 100px;
+    display: flex;
+    border: 2px solid black;
+    border-radius: 5px;
+    background-color: #898989;
+    margin-right: 20px;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    display: inline-block;
+}   
+
+#info {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 10;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+  }

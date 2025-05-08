@@ -64,6 +64,7 @@ body {
   font-weight: bold;
   border: none;
   color: white;
+  cursor: pointer;
 }
 
 .secondaryButton{
@@ -75,6 +76,19 @@ body {
   font-size: 16px;
   font-weight: bold;
   border: none;
+  cursor: pointer;
+}
+
+.criticalButton{
+  padding: 7px 17px;
+  margin-left: 15px;
+  background-color: #DF2B2B;
+  color: #f0f0f0;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
 }
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

@@ -1,0 +1,10 @@
+<p class="title">Designs Collection</p>
+
+<div class="container">
+    <app-design-card *ngFor="let preset of presets" [preset]="preset"></app-design-card>
+    <div class="newHolder">
+        <div class="new" (click)="createDesign()">
+            <img src="assets/images/plus.png" width="50" height="50" alt="hello">
+        </div>
+    </div>
+</div>

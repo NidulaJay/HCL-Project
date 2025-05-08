@@ -2,6 +2,12 @@
     <div class="topSection">
         <div id="renderingSpace"></div>
         <div class="topRightSection">
+            <div style="display: flex;">
+                <p class="title01" style="margin-top: 5px;">
+                    Name 
+                </p>
+                <input #nameInput type="text" style="margin-left: 10px;" [value]="this.preset.name">
+            </div>
             <p class="title01">
                Wall Color
             </p>
@@ -26,20 +32,24 @@
                 Furniture Model
             </p>
             <div class="furnitureContainer">
-                <app-furniture-button [model]="'chair'" (modelSelected)="changeModel($event)"></app-furniture-button>
-                <app-furniture-button [model]="'chair1'" (modelSelected)="changeModel($event)"></app-furniture-button>
-                <app-furniture-button [model]="'chair2'" (modelSelected)="changeModel($event)"></app-furniture-button>
+                <app-furniture-button [popupCallback]="showPopup.bind(this)" [model]="'chair'" (modelSelected)="changeModel($event)"></app-furniture-button>
+                <app-furniture-button [popupCallback]="showPopup.bind(this)" [model]="'chair1'" (modelSelected)="changeModel($event)"></app-furniture-button>
+                <app-furniture-button [popupCallback]="showPopup.bind(this)" [model]="'chair2'" (modelSelected)="changeModel($event)"></app-furniture-button>
             </div>
             <div class="furnitureContainer">
-                <app-furniture-button [model]="'table'" (modelSelected)="changeModel($event)"></app-furniture-button>
-                <app-furniture-button [model]="'table1'" (modelSelected)="changeModel($event)"></app-furniture-button>
-                <app-furniture-button [model]="'table2'" (modelSelected)="changeModel($event)"></app-furniture-button>
+                <app-furniture-button [popupCallback]="showPopup.bind(this)" [model]="'table'" (modelSelected)="changeModel($event)"></app-furniture-button>
+                <app-furniture-button [popupCallback]="showPopup.bind(this)" [model]="'table1'" (modelSelected)="changeModel($event)"></app-furniture-button>
+                <app-furniture-button [popupCallback]="showPopup.bind(this)" [model]="'table2'" (modelSelected)="changeModel($event)"></app-furniture-button>
             </div>
             <br>
             <div class="buttonSection">
-                <button (click)="reset()" class="primaryButton">Reset</button>
-                <button (click)="changeModel('chair2')" class="secondaryButton">Save</button>
+                <button (click)="delete()" class="criticalButton">Delete</button>
+                <button (click)="reset()" class="secondaryButton">Reset</button>
+                <button (click)="update()" class="primaryButton">Save</button>
             </div>
         </div>
     </div>
 </div>
+
+<app-model-popup *ngIf="this.popupVisible" [closeCallback]="hidePopup.bind(this)" [modelPath]="this.selectedModelPath"></app-model-popup>
+

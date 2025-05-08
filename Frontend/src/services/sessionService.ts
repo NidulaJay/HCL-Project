@@ -34,4 +34,10 @@ export class SessionService {
     return null;
   }
 
+  removeCurrentUser(): any {
+    if(this.getCurrentUser()){
+      sessionStorage.removeItem('user');
+    }
+  }
+
 }
