@@ -4,7 +4,10 @@ import { DesignComponent } from './design/design.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
 import { DesignsComponent } from './designs/designs.component';
+
+
 
 export const routes: Routes = [
 
@@ -23,6 +26,10 @@ export const routes: Routes = [
     {
         path: 'signup',
         component: SignupComponent
+    },
+    {
+        path: 'contact-us',
+        component: ContactUsComponent
     },
     {
         path: 'designs',
