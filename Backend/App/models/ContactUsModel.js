@@ -5,7 +5,8 @@ const ContactSchema = new mongoose.Schema({
     Lname: {type: String, required: false},
     email: {type: String, required: true},
     phonenumber: {type: String, required: true},
-    description: {type: String, required: false}
+    description: {type: String, required: false},
+    status: {type: Boolean, default: false}
 });
 
 const Contact = mongoose.model('Contact', ContactSchema);

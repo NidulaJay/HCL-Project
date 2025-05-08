@@ -91,8 +91,11 @@
           <strong class="label" >Description :</strong> {{ item.description }}
         </div>
         <div style="display: flex; justify-content: right; align-items: center;">
-            <button class="primaryButton" style="font-size: 13px;">
+            <button *ngIf="!item.status" class="primaryButton" style="font-size: 13px;" (click)="accept(item._id)">
                 <i class="fas fa-check"></i> Accept
+            </button>
+            <button *ngIf="item.status" class="primaryButton" style="font-size: 13px;" (click)="accept(item._id)" disabled>
+                 Accepted
             </button>
         </div>
       </div>
