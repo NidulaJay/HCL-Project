@@ -83,4 +83,14 @@ export class ContactUsComponent{
     })
   }
 
+  accept(id: any){
+    this.api.setStatus({'id': id}).subscribe({
+      next: (response) => {
+        window.location.reload();
+      }, error: (err) => {
+        window.location.reload();
+      }
+    })
+  }
+
 }

@@ -61,4 +61,12 @@ export class UserService {
     );
   }
 
+  setStatus(Data: any): Observable<any>{
+    const headers =  new HttpHeaders();
+    return this.http.post("http://localhost:3001/api/Contact/setStatus" ,Data, {headers}).pipe(catchError((error: HttpErrorResponse) =>{
+      return throwError(error);
+    }));
+  }
+
+
 }

@@ -4,7 +4,6 @@ const ContactDB = require("../models/ContactUsModel");
 
 
 router.post("/create", async(req, res) => {
-        console.log('this run')
     try {
         const Contact = new ContactDB({
             Fname: req.body.Fname,
@@ -20,7 +19,6 @@ router.post("/create", async(req, res) => {
         res.status(201).json({message: 'appoinment created successfully'});
 
     } catch (err) {
-        console.log('this run')
         console.error(err);
         res.status(500).json({ error: err})
     }
@@ -35,6 +33,16 @@ router.get("/all", async (req, res) => {
         console.error(err);
         res.status(500).json({ error: "Failed to fetch contact submissions." });
     }
+});
+
+router.post("/setStatus", async(req, res) => {
+try {
+    await ContactDB.updateOne({ _id: req.body.id }, { $set: { status: true } });
+    res.status(201).json({message: 'appoinment created successfully'});
+} catch (err) {
+    console.error(err);
+    res.status(500).json({ error: err})
+}
 });
 
 
