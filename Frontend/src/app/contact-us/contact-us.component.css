@@ -46,3 +46,29 @@ textarea {
     animation: fadeIn 0.5s ease-in-out;
   }
   
+
+  .error {
+    margin-bottom: 20px;
+    color: #EA6338;
+    font-weight: bold;
+    text-align: center;
+}
+
+.title{
+  font-size: 45px;
+  font-weight: bold;
+  color: #EA6338;
+  text-align: center;
+}
+
+input{
+  padding-left: 10px;
+}
+
+.detail{
+  color: #EA9A7A;
+}
+
+.label{
+  color: #E9D7C3;
+}

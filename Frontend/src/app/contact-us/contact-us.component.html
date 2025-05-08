@@ -1,15 +1,15 @@
 <div *ngIf="!Admin" style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
-    <div *ngIf="Error" style="display: flex; align-items: center; justify-content: center; border-radius: 15px; border-width: 2px; border-color: red; color: red;  width: 500px; height: 30px; margin-top: 15px;">
-        First Name, Email and PhoneNumber is required*
+      
+    <div style="margin-top: 30px;">
+        <h1 class="title">Contact-Us</h1>
+    </div>
+    <div *ngIf="Error" class="error">
+        - First Name, Email and PhoneNumber is required -
     </div>
     <div *ngIf="success" class="alert success">
         <strong>Success!</strong> Your operation was successful.
       </div>
-      
-    <div style="text-align: center; font-weight: bold; color: rgb(182, 182, 182); margin-top: 30px;">
-        <h1>Contact-Us</h1>
-    </div>
-    <div style="display: flex; flex-direction: column; width: 800px; color: #EA6338; justify-content: space-between; margin-top: 20px;">
+    <div style="display: flex; flex-direction: column; width: 800px; color: #EA6338; justify-content: space-between; margin-top: 0px;">
         <form [formGroup]="ContactUsForm" (ngSubmit)="onSubmit()">
             <div style="display: flex; justify-content: space-around; height: 60px; margin-bottom: 20px;">
                 <div style="display: flex; flex-direction: column; justify-content: space-around;">
@@ -24,26 +24,26 @@
             <div style="display: flex; justify-content: space-around; height: 60px; margin-bottom: 20px;">
                 <div style="display: flex; flex-direction: column; justify-content: space-around;">
                     <label>Email</label>
-                    <input type="email" placeholder="EMAIL" formControlName="email" style="text-transform: none;">
+                    <input type="email" placeholder="EMAIL" formControlName="email">
                 </div>
                 <div style="display: flex; flex-direction: column; justify-content: space-around;">
                     <label>Phone Number</label>
                     <input type="text" placeholder="PHONE NUMBER" formControlName="phoneNumber">
                 </div>
             </div>
-            <div style="display: flex; height: 240px; margin-bottom: 20px; padding-left: 30px; padding-right: 35px;">
+            <div style="display: flex; height: 190px; margin-bottom: 20px; padding-left: 30px; padding-right: 35px;">
                 <div style="display: flex; flex-direction: column; justify-content: space-around; width: 100%; max-width: 100%; padding-left: 15px; padding-right: 15px; margin-left: auto; margin-left: auto;">
                     <label>Inquiry</label>
-                    <textarea type="textarea" placeholder="What do you need to know from us?" style="width: 100%; height: 200px;" formControlName="description"></textarea>
+                    <textarea type="textarea" placeholder="What do you need to know from us?" style="width: 100%; height: 130px;padding: 10px;" formControlName="description"></textarea>
                 </div>
             </div>
             <div style="display: flex; justify-content: center; align-items: center;">
-                <button type="submit" style="height: 40px; width: 130px; background-color: #EA6338; border-width: 1px; border-radius: 10px;">SUBMIT FORM</button>
+                <button type="submit" class="primaryButton">Submit</button>
             </div>
         </form>
     </div>
 </div>
-<div style="position: absolute; bottom: 0; width: 100%; display: flex; justify-content: center; align-items: center; margin-bottom: 25px;">
+<div *ngIf="!Admin" style="position: absolute; bottom: 0; width: 100%; display: flex; justify-content: center; align-items: center; margin-bottom: 25px;">
     <div style="display: flex; align-items: center; gap: 30px; font-size: 16px; color: #7d7d7d; margin-top: 20px; width: 1100px; justify-content: space-around;">
         <div style="display: flex; align-items: center; gap: 10px;">
           <i class="fas fa-map-marker-alt"></i>
@@ -64,34 +64,34 @@
       </div>
 </div>
 
-<div *ngIf="Admin" style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
-    <div *ngFor="let item of info" style="width: 700px; margin: 40px auto; padding: 20px; border: 1px solid #ccc; border-radius: 10px; background-color: #f9f9f9;">
-        <h2 style="text-align: center; color: #333;">Inquiry Details</h2>
+<div *ngIf="Admin" style="display: flex; flex-direction: column; justify-content: center; align-items: center;margin-top: 20px;">
+    <div *ngFor="let item of info" style="width: 700px; margin: 20px; padding: 20px; border-radius: 6px; background-color: #353535;">
+        <h2 style="text-align: center; color: #EA6338;">Inquiry Details</h2>
         <div style="display: flex; justify-content: space-between; align-items: center; text-align: left;">
-            <div style="margin-bottom: 15px; ">
-                <strong>First Name:</strong> {{ item.Fname }}
+            <div class="detail" style="margin-bottom: 15px; ">
+                <strong class="label">First Name :</strong> {{ item.Fname }}
               </div>
             
-              <div style="margin-bottom: 15px;">
-                <strong>Last Name:</strong> {{ item.Lname }}
+              <div class="detail" style="margin-bottom: 15px;">
+                <strong class="label">Last Name :</strong> {{ item.Lname }}
               </div>
         </div>
 
         <div style="display: flex; justify-content: space-between; align-items: center; text-align: left;">
-            <div style="margin-bottom: 15px;">
-            <strong>Email:</strong> {{ item.email }}
+            <div class="detail" style="margin-bottom: 15px;">
+            <strong class="label">Email :</strong> {{ item.email }}
             </div>
         
-            <div style="margin-bottom: 15px;">
-            <strong>Phone Number:</strong> {{ item.phonenumber }}
+            <div class="detail" style="margin-bottom: 15px;">
+            <strong class="label">Phone Number :</strong> {{ item.phonenumber }}
             </div>
         </div>
       
-        <div style="margin-bottom: 15px;">
-          <strong>Description:</strong> {{ item.description }}
+        <div class="detail" style="margin-bottom: 15px;">
+          <strong class="label" >Description :</strong> {{ item.description }}
         </div>
         <div style="display: flex; justify-content: right; align-items: center;">
-            <button style="padding: 10px 15px; border: none; background-color: #28a745; color: white; border-radius: 5px; cursor: pointer;">
+            <button class="primaryButton" style="font-size: 13px;">
                 <i class="fas fa-check"></i> Accept
             </button>
         </div>

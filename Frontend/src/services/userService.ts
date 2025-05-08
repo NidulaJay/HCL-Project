@@ -52,10 +52,13 @@ export class UserService {
     }));
   }
 
-  getContact(): Observable<any>{
-    return this.http.get<any[]>("http://localhost:3001/api/Contact/all").pipe(catchError((error: HttpErrorResponse) =>{
-      return throwError(error);
-    }));
+  getContact(): Observable<any> {
+    return this.http.get<any[]>("http://localhost:3001/api/Contact/all").pipe(
+      map(data => data.reverse()),
+      catchError((error: HttpErrorResponse) => {
+        return throwError(() => error);
+      })
+    );
   }
 
 }
