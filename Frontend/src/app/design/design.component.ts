@@ -325,8 +325,6 @@ export class DesignComponent implements AfterViewInit {
     }
     this.changeModel(this.preset.model)
     this.updateModel();
-
-    this.showPopup('')
   }
 
   delete(): void{
