@@ -110,4 +110,19 @@ router.delete("/:presetId", async (req, res) => {
   }
 });
 
+router.get("/presetId", async (req, res) => {
+  try {
+    const presetId = req.query.presetId;
+    const preset = await Preset.findById(presetId);
+
+    if (!preset) {
+      return res.status(404).json({success: false, message: "Preset not found",});
+    }
+
+    res.status(200).json({success: true, data: preset,});
+  } catch (error) {
+    res.status(500).json({success: false, message: error.message});
+  }
+});
+
 module.exports = router;
