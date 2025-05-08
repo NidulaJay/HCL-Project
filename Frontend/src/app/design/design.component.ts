@@ -6,10 +6,12 @@ import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader';
 import { FurnitureButtonComponent } from '../components/furniture-button/furniture-button.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PresetService } from '../../services/presetService';
+import { ModelPopupComponent } from '../components/model-popup/model-popup.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-design',
-  imports: [FurnitureButtonComponent],
+  imports: [FurnitureButtonComponent, ModelPopupComponent, CommonModule],
   templateUrl: './design.component.html',
   styleUrls: ['./design.component.css']
 })
@@ -34,6 +36,7 @@ export class DesignComponent implements AfterViewInit {
   private horizontalAngle = 5;
 
   private id: string | null = '';
+  popupVisible = false;
 
   preset: Preset = {
     id: 'aaa',
@@ -42,6 +45,8 @@ export class DesignComponent implements AfterViewInit {
     size: 7,
     color: '#FDE47D'
   }
+
+  selectedModelPath = 'chair' 
 
   constructor(
     private route: ActivatedRoute,
@@ -249,6 +254,7 @@ export class DesignComponent implements AfterViewInit {
     // this.camera.rotation.z += 0.01;
     this.updateModel();
     this.renderer.render(this.scene, this.camera);
+    // console.log(this.popupVisible)
   }
 
   changeColor(color: string): void {
@@ -319,6 +325,8 @@ export class DesignComponent implements AfterViewInit {
     }
     this.changeModel(this.preset.model)
     this.updateModel();
+
+    this.showPopup('')
   }
 
   delete(): void{
@@ -371,6 +379,15 @@ export class DesignComponent implements AfterViewInit {
           alert('Update Unsuccessful')
     }})
     
+  }
+
+  showPopup(model: string){
+    this.selectedModelPath = model
+    this.popupVisible = true
+  }
+
+  hidePopup(){
+    this.popupVisible = false
   }
 
 }

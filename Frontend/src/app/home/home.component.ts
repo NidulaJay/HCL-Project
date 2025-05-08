@@ -15,15 +15,8 @@ export class HomeComponent {
   private renderer!: THREE.WebGLRenderer;
 
   private tableModel: THREE.Group | undefined;
-  private character: THREE.Group | undefined;
   private loader: GLTFLoader = new GLTFLoader();
-  private loader2: FBXLoader = new FBXLoader();
-  private rotationDirection: number = 1;
 
-  private mouse = new THREE.Vector2();
-  private raycaster = new THREE.Raycaster();
-  private groundPlane = new THREE.Plane(new THREE.Vector3(0, 1, 0), 0); // horizontal plane
-  private targetPoint = new THREE.Vector3();
   private mouseOffsetX = 0;
 
   ngOnInit() {

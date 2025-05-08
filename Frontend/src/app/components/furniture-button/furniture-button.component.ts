@@ -14,6 +14,7 @@ export class FurnitureButtonComponent {
   private renderer!: THREE.WebGLRenderer;
 
   @Input() model: string = '';
+  @Input() popupCallback!: (model: string) => void;
   @Output() modelSelected = new EventEmitter<string>();
   @ViewChild('modelArea', { static: false }) modelAreaRef!: ElementRef;
 
@@ -73,5 +74,9 @@ export class FurnitureButtonComponent {
 
   onButtonClick() {
     this.modelSelected.emit(this.model);
+  }
+
+  showPopup(){
+    this.popupCallback(this.model)
   }
 }
