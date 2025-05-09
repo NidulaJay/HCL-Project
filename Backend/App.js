@@ -4,6 +4,7 @@ const app = express();
 const connectdb = require("./App/config/db");
 const userRoutes = require("./App/routes/userRoutes");
 const presetRoutes = require("./App/routes/presetRoutes");
+const contactRoutes = require('./App/routes/ContactFormRoutes');
 
 require("dotenv").config();
 
@@ -13,6 +14,7 @@ app.use(express.json());
 
 app.use("/api/user", userRoutes);
 app.use("/api/preset", presetRoutes);
+app.use("/api/Contact", contactRoutes);
 
 connectdb();
 
